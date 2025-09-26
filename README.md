@@ -30,6 +30,9 @@ The C++ file implements the methods. implementing the Methods.
 
 Your main focus should be adding the bindings in FT_SprintCharacter.cpp lines 95-97
 
+The input follows the same logic as start and stop jumping, follow that inpuit mapping and context, you can debug the code with:
+UE_LOG(LogTemp, Warning, TEXT("Sprinting"));
+
 For the medium and hard challenges look in the FT_SprintCharacter Constructor (AFT_SprintCharacter::AFT_SprintCharacter()), notice the template shows us how to change key values.
 
 ## Changes from me:
