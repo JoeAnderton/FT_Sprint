@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "FT_SprintGateManager.generated.h"
 #include "FT_SprintGate.h"
+#include "Kismet/GameplayStatics.h"
+#include "FT_SprintGateManager.generated.h"
+
 
 UCLASS()
 class FT_SPRINT_API AFT_SprintGateManager : public AActor

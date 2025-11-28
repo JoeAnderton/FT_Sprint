@@ -3,12 +3,14 @@
 
 #include "FT_SprintGateManager.h"
 
+// Define the static instance here which is needed in C++ files <- Stupid C++
+AFT_SprintGateManager* AFT_SprintGateManager::instance;
+
 // Sets default values
 AFT_SprintGateManager::AFT_SprintGateManager()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 // Called when the game starts or when spawned
@@ -24,16 +26,23 @@ void AFT_SprintGateManager::BeginPlay()
 	else
 	{
 		// we are a duplicate, destroy ourself
-		Destroy();
 		UE_LOG(LogTemp, Warning, TEXT("Multiple Sprint Gate Managers detected in level!"));
+		Destroy();	
 	}
 
 	// get all the sprint gates in the level
-	for (TActorIterator<AFT_SprintGate> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+	TArray<AActor*> foundGates;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), "Gate", foundGates);
+	for (AActor* actor : foundGates)
 	{
-		AFT_SprintGate* gate = *ActorItr;
-		sprintGates.Add(gate);
+		UE_LOG(LogTemp, Warning, TEXT("Sprint Gate found: %s"), *actor->GetName());
+	    AFT_SprintGate* gate = Cast<AFT_SprintGate>(actor);
+	    if (gate)
+	    {
+	        sprintGates.Add(gate);
+	    }
 	}
+	UE_LOG(LogTemp, Warning, TEXT("Total Sprint Gates found: %d"), sprintGates.Num());
 }
 
 // Called every frame
@@ -74,6 +83,8 @@ void AFT_SprintGateManager::GatePassed()
 	{
 		CompleteTrack();
 	}
+	UE_LOG(LogTemp, Warning, TEXT("Total Gates Passed: %d"), gatesPassed);
+	UE_LOG(LogTemp, Warning, TEXT("Total Sprint Gates found: %d"), sprintGates.Num());
 }
 
 // reset all the gates to false, and reset the tracking variables

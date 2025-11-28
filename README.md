@@ -52,7 +52,7 @@ For the medium and hard challenges look in the FT_SprintCharacter Constructor (`
 
 Lines 47-49 added the input action pointer. This will allow you to assign an **input action in the blueprint editor** for the character.
 ```
-/** Connah Addition 1: Sprint Input Action */
+/** Connah Addition 1: Sprint Input Action **/
 UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 UInputAction* SprintAction;
 ```
@@ -62,7 +62,7 @@ you can see this by opening the **BP_ThirdPersonCharacter**, **Content->ThirdPer
 
 Lines 63-65 added a start and end sprint function declarations
 ```
-/** Connah Addition 2 methods to ensure we handle sprint enable and disable */
+/** Connah Addition 2 methods to ensure we handle sprint enable and disable **/
 void SprintStart(const FInputActionValue& Value); 
 void SprintStop(const FInputActionValue& Value);
 ```
