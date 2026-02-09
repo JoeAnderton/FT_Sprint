@@ -50,7 +50,10 @@ class AFT_SprintCharacter : public ACharacter
 
 public:
 	AFT_SprintCharacter();
-	
+
+private:
+	int stamina = 100;
+	bool sprinting = false;
 
 protected:
 
@@ -62,6 +65,7 @@ protected:
 		
 	/** Connah Addition 2 methods to ensure we handle sprint enable and disable */
 	void SprintStart(const FInputActionValue& Value); 
+	void Sprinting();
 	void SprintStop(const FInputActionValue& Value);
 
 protected:
